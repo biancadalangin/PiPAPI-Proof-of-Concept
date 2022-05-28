@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture-in-Picture API</title>
+    <script src="main.js"></script>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+
+  <!-- image background -->
+  <div style="background-image: url('bg.png'); background-size: cover; height: 100%;	padding-top: 3%; padding-bottom: 3%;"> 
+    <img src="title.png" style="width: 50%;"> <!-- title (april: a mini vlog) -->
+    <img src="description.png" style="width: 40%; margin-top: 0; margin-bottom: 0;"> <!-- description -->
+    <a href="#scroll"> <!-- scroll to the video section -->
+      <img src="watch_btn.png" style="width: 12%; margin-top: 5%; margin-bottom: 10%;"> <!-- 'watch here' button -->
+    </a>
+  </div>
+
+  <!-- video section -->
+  <section>
+    <div class="container reveal"> <!-- reveal elements on scroll -->
+      <div class="cards">
+        <div id="scroll"></div> <!-- this is where the 'watch here' button scrolls to -->
+        <video src="vid.mp4" id="video" width="500" controls></video> <!-- video -->
+      </div>    
+      <div id="button" class="togglePipButton"></div> <!-- toggle PiP button -->
+      <br><br>
+
+      <!-- message if PiP is not available -->
+		  <p class="no-picture-in-picture">
+			Picture-in-Picture mode not available
+		  <p>
+    </div>
+  </section>
+
+  <!-- reveal elements on scroll javascript code -->
+  <script type="text/javascript">
+      window.addEventListener('scroll', reveal);
+  
+      function reveal(){
+        var reveals = document.querySelectorAll('.reveal');
+  
+        for(var i = 0; i < reveals.length; i++){
+  
+          var windowheight = window.innerHeight;
+          var revealtop = reveals[i].getBoundingClientRect().top;
+          var revealpoint = 150;
+  
+          if(revealtop < windowheight - revealpoint){
+            reveals[i].classList.add('active');
+          }
+          else{
+            reveals[i].classList.remove('active');
+          }
+        }
+      }
+  </script>
+      
+</body>
+</html>
